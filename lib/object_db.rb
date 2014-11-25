@@ -1,10 +1,11 @@
 class ObjectDb
-
+  #require 'json'
+  #require_relative './jsonable'
+    
   def initialize(filename)
     # Stores one hash per class. Key is class, hash is collection of instances.
     # The collection of instances is also hashed.
     @data = {}
-    
     @filename = filename
   end
   
@@ -12,7 +13,7 @@ class ObjectDb
     cls = object.class
     ensure_collection(cls)
     
-    if object.respond_to?(:id)
+    if object.respond_to?(:id) && !object.id.nil?
       id = object.id
     else
       id = @data[cls].count + 1
@@ -27,6 +28,11 @@ class ObjectDb
   def get(clazz, id)
     raise "No objects of type #{clazz} stored yet" if @data[clazz].nil?
     return @data[clazz][id]
+  end
+  
+  # TODO: this is just for testing
+  def dump_it
+    raise @data.to_json
   end
   
   private
