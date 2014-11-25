@@ -1,6 +1,6 @@
 # Object DB
 
-Object DB is an embedded, pure ruby object (NoSQL) database.
+Object DB is an embedded, pure ruby object (NoSQL) database. Object DB focuses on consistentcy and feature richness.
 
 # Use
 
