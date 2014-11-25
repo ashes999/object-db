@@ -1,7 +1,12 @@
 require_relative 'test_config'
 require_relative "#{SOURCE_ROOT}/object_db"
+require 'fileutils'
 
 class ObjectDbTest < Test::Unit::TestCase
+
+  def setup
+    FileUtils.rm(TEST_DB_NAME) if File.exist?(TEST_DB_NAME)
+  end
 
 	def test_get_gets_set_value_with_generated_id
 	  expected = Cat.new('mittens')
@@ -44,7 +49,27 @@ class ObjectDbTest < Test::Unit::TestCase
 	  db.save(expected)
 	  actual = db.get(Cat, expected.id)
 	  assert_equal('hurayrah', actual.name)	  
-	end	
+	end
+	
+	def test_set_creates_file
+	  c = Cat.new('mittens')
+	  db = ObjectDb.new(TEST_DB_NAME)
+	  db.save(c)
+	  assert(File.exist?(TEST_DB_NAME))
+	end
+	
+	def test_initialize_loads_file_with_data
+	  expected = Cat.new('mittens')
+	  db = ObjectDb.new(TEST_DB_NAME)
+	  db.save(expected)
+	  
+	  db2 = ObjectDb.new(TEST_DB_NAME)
+	  actual = db2.get(Cat, expected.id)
+	  
+	  assert_equal(expected.id, actual.id)
+	  assert_equal(expected.name, actual.name)	  
+  end
+	
 end
 
 # Dummy classes for testing

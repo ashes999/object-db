@@ -9,5 +9,5 @@ Gem::Specification.new do |s|
 	s.homepage	= 'https://github.com/ashes999/object-db'
 	s.files			= Dir["{lib}/**/*.rb", "*.rb", "*.md"]
 	s.license   = 'MIT'
-	s.add_runtime_dependency 'json', '~> 1.5.5'
+	s.add_runtime_dependency 'oj', '~> 2.11.1'
 end
