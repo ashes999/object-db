@@ -6,6 +6,7 @@ Gem::Specification.new do |s|
 	s.description	= 'An embeddable, pure-ruby object (NoSQL) database.'
 	s.authors		= ['Ashiq A.']
 	s.email			= 'alibhai.ashiq@gmail.com'
-	s.homepage		= 'https://github.com/ashes999/object-db'
+	s.homepage	= 'https://github.com/ashes999/object-db'
 	s.files			= Dir["{lib}/**/*.rb", "*.rb", "*.md"]
+	s.license   = 'MIT'
 end
