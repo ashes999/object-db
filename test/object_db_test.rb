@@ -11,6 +11,7 @@ class ObjectDbTest < Test::Unit::TestCase
 	  
 	  actual = db.get(Cat, expected.id)
 	  assert_not_nil(actual)
+	  assert_not_nil(actual.id)
 	  assert_equal(expected.id, actual.id)
 	  
 	  assert(db.get(Cat, 999).nil?)
